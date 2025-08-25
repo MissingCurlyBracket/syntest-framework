@@ -1,0 +1,32 @@
+{
+  "name": "type-inference-evaluation",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libraries/type-inference-evaluation/lib",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libraries/type-inference-evaluation/dist",
+        "main": "libraries/type-inference-evaluation/index.ts",
+        "tsConfig": "libraries/type-inference-evaluation/tsconfig.json"
+      }
+    },
+    "demo": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx run-demo.ts",
+        "cwd": "libraries/type-inference-evaluation"
+      }
+    },
+    "example": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx lib/example.ts",
+        "cwd": "libraries/type-inference-evaluation"
+      }
+    }
+  },
+  "tags": ["type:lib", "scope:type-inference"]
+}

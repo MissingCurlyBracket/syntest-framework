@@ -184,7 +184,6 @@ class TypePredictionVisitor extends AbstractSyntaxTreeVisitor {
     return usage;
   }
 
-  // Babel visitor methods - these must match exact AST node types
   Identifier = (path: NodePath<t.Identifier>) => {
     const builtins = new Set([
       "console",
@@ -267,7 +266,6 @@ class TypePredictionVisitor extends AbstractSyntaxTreeVisitor {
   };
 }
 
-// Example usage
 const codeToAnalyze = `
 class DataProcessor {
     private itemCount = 0;
@@ -312,10 +310,9 @@ function generateLLMTrainingData() {
 
     const contexts = visitor.getCollectedContexts();
 
-    // Format for LLM training
     const trainingData = contexts.map((context_) => ({
       prompt: `Given the identifier '${context_.identifier}' in context '${context_.context}' with syntactic context '${context_.syntacticContext}', semantic hints: [${context_.semanticHints.join(", ")}], and usage patterns: [${context_.usage.join(", ")}], what is the most likely TypeScript type?`,
-      completion: context_.predictedType || "unknown", // You'd need to annotate this manually or extract from TypeScript
+      completion: context_.predictedType || "unknown",
       metadata: {
         scope: context_.scope,
         position: context_.position,
@@ -323,7 +320,6 @@ function generateLLMTrainingData() {
       },
     }));
 
-    // Output as JSON for LLM consumption
     console.log(JSON.stringify(trainingData, undefined, 2));
     console.log(`\nGenerated ${trainingData.length} training examples`);
 
@@ -334,7 +330,6 @@ function generateLLMTrainingData() {
   }
 }
 
-// Alternative: Format for few-shot prompting
 // function generateFewShotPrompt(identifier: string, context: TypePredictionContext): string {
 //     return `
 // Context: ${context.context}
